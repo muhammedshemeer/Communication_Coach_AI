@@ -1,6 +1,6 @@
-# 🎙️ VDart CommBot - AI Communication Coach
+# 🎙️ SpeakSync AI - Communication Coach
 
-VDart CommBot is a professional AI-driven communication trainer designed to help employees improve their verbal skills, tone, and professional mindset through real-time roleplay scenarios.
+SpeakSync AI is a professional AI-driven communication trainer designed to help employees improve their verbal skills, tone, and professional mindset through real-time roleplay scenarios.
 
 ![CommBot Preview](https://img.shields.io/badge/Status-Beta-brightgreen)
 ![Python](https://img.shields.io/badge/Python-3.9+-blue)

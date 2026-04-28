@@ -13,7 +13,7 @@ from database.db import (
 
 # Custom Input Overlay Script (Injects Mic/Voice buttons over standard st.text_input)
 INPUT_OVERLAY_HTML = """
-<div id="vdart-input-overlay">
+<div id="Professional-input-overlay">
     <div id="ov-mic" class="overlay-mic" onclick="ovToggleVoice()" title="Voice Input">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
     </div>
@@ -86,7 +86,7 @@ def send_message(user_text, emp, scenario, prefix=""):
     save_message(emp["id"], st.session_state.session_id, "user", user_text)
     sp = get_system_prompt(emp["role"], emp["target_days"], emp["daily_minutes"], emp["total_sessions"]+1, scenario)
     history = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
-    with st.spinner("CommBot is thinking..."):
+    with st.spinner("SpeakSync is thinking..."):
         reply = chat_with_groq(history, sp)
     st.session_state.messages.append({"role": "assistant", "content": reply})
     save_message(emp["id"], st.session_state.session_id, "assistant", reply)
@@ -97,7 +97,7 @@ def send_message(user_text, emp, scenario, prefix=""):
 
 # ── Page config: sidebar EXPANDED so arrow shows ──────────────
 st.set_page_config(
-    page_title="CommBot · VDart",
+    page_title="SpeakSync · Professional",
     page_icon="🎙️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -524,8 +524,8 @@ with st.sidebar:
     st.markdown("""
     <div style="text-align:center;padding:10px 0 18px;">
       <div style="font-size:2.6rem;">🎙️</div>
-      <div style="font-family:'DM Serif Display',serif;font-size:1.25rem;color:#1A6B6B;margin-top:4px;">CommBot</div>
-      <div style="font-size:0.62rem;color:#A8A29E;letter-spacing:2.5px;font-weight:700;">VDART · AI COACH</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:1.25rem;color:#1A6B6B;margin-top:4px;">SpeakSync AI</div>
+      <div style="font-size:0.62rem;color:#A8A29E;letter-spacing:2.5px;font-weight:700;">PROFESSIONAL · AI COACH</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -761,8 +761,8 @@ function doSend() {
 if st.session_state.page == "landing":
     st.markdown("""
     <div class="hero">
-      <div class="hero-ey">VDart · Internal AI Tool</div>
-      <div class="hero-title">🎙️ CommBot</div>
+      <div class="hero-ey">Professional · Internal AI Tool</div>
+      <div class="hero-title">🎙️ SpeakSync</div>
       <div class="hero-sub">Your personal AI English communication coach.<br>
       Practice by role · Speak or type · Tamil understood · Track your growth daily.</div>
     </div>
@@ -772,7 +772,7 @@ if st.session_state.page == "landing":
     for col,ic,ti,de in zip([c1,c2,c3,c4],
         ["🎭","🇮🇳","🎙️","📈"],
         ["Role Scenarios","Tamil Support","Live Mic","Progress Tracking"],
-        ["Tailored to your VDart role","Type Tamil, learn English","Speak directly — no uploads","Scores, streaks & history"]):
+        ["Tailored to your Professional role","Type Tamil, learn English","Speak directly — no uploads","Scores, streaks & history"]):
         col.markdown(f"""
         <div class="role-card">
           <div style="font-size:2rem;margin-bottom:8px;">{ic}</div>
@@ -790,7 +790,7 @@ if st.session_state.page == "landing":
             st.session_state.page = "progress"; st.rerun()
 
     st.markdown("<br><hr>", unsafe_allow_html=True)
-    st.markdown("### 🎯 Supported Roles at VDart")
+    st.markdown("### 🎯 Supported Roles at Professional")
     rcols = st.columns(3)
     for i,(rn,rd2) in enumerate(ROLES.items()):
         with rcols[i%3]:
@@ -804,11 +804,11 @@ if st.session_state.page == "landing":
 # ── SETUP ─────────────────────────────────────────────────────
 elif st.session_state.page == "setup":
     st.markdown("## 👋 Create Your Profile")
-    st.markdown('<div class="card card-teal" style="margin-bottom:20px;font-size:.9rem;">Tell us about yourself so CommBot can personalise your English practice journey at VDart.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card card-teal" style="margin-bottom:20px;font-size:.9rem;">Tell us about yourself so SpeakSync can personalise your English practice journey at Professional.</div>', unsafe_allow_html=True)
     with st.form("sf"):
         c1,c2 = st.columns(2)
         with c1: name = st.text_input("📛 Full Name", placeholder="e.g. Priya Rajan")
-        with c2: role = st.selectbox("💼 Your Role at VDart", list(ROLES.keys()))
+        with c2: role = st.selectbox("💼 Your Role at Professional", list(ROLES.keys()))
         c3,c4 = st.columns(2)
         with c3: tdays = st.slider("🎯 Target Days", 7, 90, 30)
         with c4: dmins = st.slider("⏱️ Minutes/Day", 10, 60, 20)
@@ -865,7 +865,7 @@ elif st.session_state.page == "chat":
                         st.session_state.session_active = True
                         st.session_state.session_start_time = time.time()
                         sp = get_system_prompt(emp["role"],emp["target_days"],emp["daily_minutes"],emp["total_sessions"]+1,sc)
-                        with st.spinner("CommBot is getting ready..."):
+                        with st.spinner("SpeakSync is getting ready..."):
                             opening = chat_with_groq([], sp)
                         st.session_state.messages.append({"role":"assistant","content":opening})
                         save_message(emp["id"], st.session_state.session_id, "assistant", opening)
@@ -880,7 +880,7 @@ elif st.session_state.page == "chat":
                 st.session_state.session_active = True
                 st.session_state.session_start_time = time.time()
                 sp = get_system_prompt(emp["role"],emp["target_days"],emp["daily_minutes"],emp["total_sessions"]+1,sc)
-                with st.spinner("CommBot is getting ready..."):
+                with st.spinner("SpeakSync is getting ready..."):
                     opening = chat_with_groq([], sp)
                 st.session_state.messages.append({"role":"assistant","content":opening})
                 save_message(emp["id"], st.session_state.session_id, "assistant", opening)
@@ -894,12 +894,12 @@ elif st.session_state.page == "chat":
                 if msg["role"]=="user":
                     st.markdown(f'<div class="b-user"><div class="b-lbl" style="color:rgba(255,255,255,.55);">YOU</div>{msg["content"]}</div>', unsafe_allow_html=True)
                 else:
-                    st.markdown(f'<div class="b-bot"><div class="b-lbl" style="color:#1A6B6B;">🤖 COMMBOT</div>{msg["content"]}</div>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="b-bot"><div class="b-lbl" style="color:#1A6B6B;">🤖 SpeakSync</div>{msg["content"]}</div>', unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
 
             # Native Chat Input (Guaranteed Visibility & Enter key support)
-            prompt = st.chat_input("Ask CommBot anything...")
+            prompt = st.chat_input("Ask SpeakSync anything...")
             if prompt:
                 send_message(prompt, emp, scenario)
 
@@ -956,7 +956,7 @@ elif st.session_state.page == "history":
         if msg["role"]=="user":
             st.markdown(f'<div class="b-user"><div class="b-lbl" style="color:rgba(255,255,255,.55);">YOU</div>{msg["content"]}</div>', unsafe_allow_html=True)
         else:
-            st.markdown(f'<div class="b-bot"><div class="b-lbl" style="color:#1A6B6B;">🤖 COMMBOT</div>{msg["content"]}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="b-bot"><div class="b-lbl" style="color:#1A6B6B;">🤖 SpeakSync</div>{msg["content"]}</div>', unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("← Back to Practice"): st.session_state.page="chat"; st.rerun()
 

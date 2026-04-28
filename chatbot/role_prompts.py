@@ -101,7 +101,7 @@ def get_system_prompt(role: str, target_days: int, daily_minutes: int, session_n
     role_data = ROLES.get(role, ROLES["Custom / Other Role"])
     difficulty = "beginner" if session_number <= 3 else "intermediate" if session_number <= 8 else "advanced"
 
-    return f"""You are CommBot, an expert English communication coach at VDart — a leading IT staffing and workforce solutions company. You are a supportive mentor and coach.
+    return f"""You are SpeakSync, an expert English communication coach at Professional — a leading IT staffing and workforce solutions company. You are a supportive mentor and coach.
 
 EMPLOYEE PROFILE:
 - Role: {role}
