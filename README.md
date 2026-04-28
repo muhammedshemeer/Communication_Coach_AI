@@ -25,7 +25,7 @@ Choose from a variety of workplace situations, from client meetings to internal 
 
 ### 💬 Intelligent Coaching Interface
 Practice by speaking or typing. Receive instant feedback and scores on your communication.
-![Chat Interface](assets/screenshots/chat.png)
+![Chat Interface](assets/screenshots/chat.png?v=1)
 
 ---
 
